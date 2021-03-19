@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start-dev": "cross-env NODE_ENV=development webpack-dev-server --mode development",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development",
     "build": "cross-env NODE_ENV=production npx webpack --config webpack.config.prod.js --progress --colors --bail"
   },
   "keywords": [],
@@ -33,6 +33,7 @@
   "dependencies": {
     "lodash": "^4.17.19",
     "tailwindcss": "^1.4.6",
-    "three": "^0.126.1"
+    "three": "^0.126.1",
+    "three-globe": "^2.17.3"
   }
 }
