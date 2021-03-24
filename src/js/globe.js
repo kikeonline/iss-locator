@@ -2,16 +2,21 @@ import * as THREE from 'three';
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 import ThreeGlobe from 'three-globe';
 
+class Globe {
+
+  constructor(lat, lng) {
+    this.lat = lat
+    this.lng = lng
 
     // Gen random data
     const gData = [{
-      lat: '-51.2532',
-      lng: '-154.2825',
+      lat: this.lat,
+      lng: this.lng,
       size: 0.1,
       color: 'red'
     }];
 
-    const Globe = new ThreeGlobe({ animateIn: true})
+    const Globe = new ThreeGlobe({ animateIn: true })
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
       .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
       .showAtmosphere(true)
@@ -22,7 +27,7 @@ import ThreeGlobe from 'three-globe';
 
     const issLatLng = Globe.getCoords(gData[0].lat, gData[0].lng);
 
-    console.log(issLatLng);
+    // console.log(issLatLng);
 
     // Setup renderer
     const renderer = new THREE.WebGLRenderer();
@@ -37,7 +42,7 @@ import ThreeGlobe from 'three-globe';
 
     // Setup camera
     const camera = new THREE.PerspectiveCamera();
-    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     camera.position.z = 300;
 
@@ -47,23 +52,29 @@ import ThreeGlobe from 'three-globe';
     tbControls.rotateSpeed = 5;
     tbControls.zoomSpeed = 0.8;
 
-
     // const issX  = gData[0].lat / 3.14;
-    const issX  = issLatLng.x * Math.PI;
-    const issY  = issLatLng.y;
-    const issZ  = issLatLng.z;
-    
-    Globe.rotation.x = -0.5;
-    Globe.rotation.y = issX;
+    // const issX = issLatLng.x * Math.PI
+    // const issY = issLatLng.y
+    // const issZ = issLatLng.z
+  
+    // Globe.rotation.x = -0.5;
+    // Globe.rotation.y = issX;
     // Globe.rotation.z = issZ / 100;
-
-    console.log(issX, issY, issZ);
-
+    // console.log(issX, issY, issZ);
+  
     // Kick-off renderer
     (function animate() {
       // Frame cycle
-      tbControls.update();
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-      Globe.rotation.y -= 0.000005;
-    })();
+      tbControls.update()
+      renderer.render(scene, camera)
+      requestAnimationFrame(animate)
+      Globe.rotation.y -= 0.0005
+    })()
+  }
+
+  animate() {
+    
+  }
+}
+
+export { Globe }
