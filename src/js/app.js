@@ -10,9 +10,8 @@ issLoc.getLatLng()
     result => {
       console.log(result)
       /* eslint-disable-next-line */
-      const { iss_position } = result
-      console.log(iss_position)
-      const globe = new Globe(iss_position.latitude, iss_position.longitude)
+      const { latitude, longitude } = result
+      const globe = new Globe(latitude, longitude)
 
       setInterval(function () {
         issLoc.getLatLng()

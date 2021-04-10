@@ -11,8 +11,8 @@ International Space Station geolocation in 3D Globe, WIP.
 
 Live build: iss-3dglobe-location.netlify.app
 
-- http://open-notify.org/Open-Notify-API/
-- http://api.geonames.org/
+- https://wheretheiss.at/
+- https://secure.geonames.org/
 - https://threejs.org/
 
 TODO:
