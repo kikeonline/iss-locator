@@ -1,6 +1,11 @@
-# ISS Locator
 
-Point in a 3D Globe the location of the International Space Station, this project is not completed.
+<h1 align="center">
+  <img src="https://raw.githubusercontent.com/kikeonline/iss-locator/main/screenshot.png" alt="ISS Locator" width="800">
+  <br>
+</h1>
+
+# ISS Locator
+International Space Station geolocation in 3D Globe, WIP.
 
 - http://open-notify.org/Open-Notify-API/
 - http://api.geonames.org/
@@ -8,6 +13,7 @@ Point in a 3D Globe the location of the International Space Station, this projec
 
 TODO:
 
-- Fixed all standard code conflicts
-- Refactor for cleaner code
+- Fix all standard code conflicts
+- Refactor code
 - Exhance 3D render
+- Fix rotaion flickering bug
