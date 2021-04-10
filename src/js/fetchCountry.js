@@ -7,7 +7,6 @@ export default class GetCountry {
     window.fetch(`https://secure.geonames.org/countryCodeJSON?lat=${lat}&lng=${lng}&username=${GEONAMES_USERNAME}`)
       .then(response => response.json())
       .then(conuntryResult => {
-        // console.log(conuntryResult)
         if (typeof conuntryResult.status === 'undefined') {
           console.log('Country: ' + conuntryResult.countryName)
           element.innerHTML = conuntryResult.countryName

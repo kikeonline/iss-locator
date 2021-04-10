@@ -9,7 +9,7 @@
 
 International Space Station geolocation in 3D Globe, WIP.
 
-Live build: iss-3dglobe-location.netlify.app
+Live build: https://iss-3dglobe-location.netlify.app
 
 - https://wheretheiss.at/
 - https://secure.geonames.org/
@@ -17,6 +17,7 @@ Live build: iss-3dglobe-location.netlify.app
 
 TODO:
 
+- Rotate globe to ISS location 
 - Refactor code, OOP filosofy
 - Testing enviorment with JEST
 - Exhance 3D render

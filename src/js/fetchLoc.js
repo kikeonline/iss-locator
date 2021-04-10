@@ -6,7 +6,6 @@ export default class IssLocation {
     const result = window.fetch('https://api.wheretheiss.at/v1/satellites/25544')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         getCountry.getCountry(data.latitude, data.longitude)
         return data
       })
