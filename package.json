@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
+  "standard": {
+    "globals": [
+      "requestAnimationFrame"
+    ]
+  },
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development",
     "build": "cross-env NODE_ENV=production npx webpack --config webpack.config.prod.js --progress --colors --bail",
     "lint": "standard src/js/*.js"
   },
