@@ -2,15 +2,17 @@ import '../styles/styles.css'
 import log from './log.js'
 import { Globe, globeUpdate } from './globe.js'
 import IssLocation from './fetchLoc.js'
+import GetCountry from './fetchCountry'
 
 const issLoc = new IssLocation()
+const getCountry = new GetCountry()
 
 issLoc.getLatLng()
 .then(
   result => {
-    console.log(result)
-    const globe = new Globe(result.iss_position.latitude, result.iss_position.longitude)
-    // globe.animate()
+    const { iss_position } = result
+    const country = getCountry.getCountry(iss_position.latitude, iss_position.longitude)
+    const globe = new Globe(iss_position.latitude, iss_position.longitude)
     })
 
   // setInterval(function(){ 

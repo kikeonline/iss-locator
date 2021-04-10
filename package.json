@@ -31,6 +31,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "babel-plugin-dotenv-import": "^2.2.0",
+    "dotenv": "^8.2.0",
     "lodash": "^4.17.19",
     "tailwindcss": "^1.4.6",
     "three": "^0.126.1",
