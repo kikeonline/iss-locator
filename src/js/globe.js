@@ -8,24 +8,23 @@ class Globe {
     this.lat = lat
     this.lng = lng
 
-    // Gen random data
-    const gData = [{
+    this.gData = [{
       lat: this.lat,
       lng: this.lng,
       size: 0.1,
       color: 'red'
     }];
 
-    const Globe = new ThreeGlobe({ animateIn: true })
+    this.globe = Globe = new ThreeGlobe({ animateIn: true })
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
       .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
       .showAtmosphere(true)
       .showGraticules(true)
-      .pointsData(gData)
+      .pointsData(this.gData )
       .pointAltitude('size')
       .pointColor('color');
 
-    const issLatLng = Globe.getCoords(gData[0].lat, gData[0].lng);
+    const issLatLng = this.globe.getCoords(this.gData[0].lat, this.gData[0].lng);
 
     // console.log(issLatLng);
 
@@ -36,7 +35,7 @@ class Globe {
 
     // Setup scene
     const scene = new THREE.Scene();
-    scene.add(Globe);
+    scene.add(this.globe);
     scene.add(new THREE.AmbientLight(0xbbbbbb));
     scene.add(new THREE.DirectionalLight(0xffffff, 0.2));
 
@@ -68,12 +67,23 @@ class Globe {
       tbControls.update()
       renderer.render(scene, camera)
       requestAnimationFrame(animate)
-      Globe.rotation.y -= 0.0005
+      // Globe.rotation.y = -0.5
+      // Globe.rotation.y -= 0.000005
     })()
   }
 
-  animate() {
+  globeUpdate(lat, lng) {
     
+    this.gData.push({
+      lat: lat,
+      lng: lng,
+      size: 0.1,
+      color: 'red'
+    })
+
+    console.log(this.gData)
+    this.globe.pointsData(this.gData)
+    this.globe.rotation.y = 3
   }
 }
 
