@@ -17,9 +17,9 @@ Live build: https://iss-3dglobe-location.netlify.app
 
 TODO:
 
-- Rotate globe to ISS location 
-- Refactor code, OOP filosofy
+- Refactor code, OOP.
 - Testing enviorment with JEST
-- Exhance 3D render
+- Design UI
+- Add 3D Arc with trajectory, Add ISS 3D Model.
 - Show current astronauts aboard the ISS
 - Save history in cloud db?
