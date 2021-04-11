@@ -14,7 +14,9 @@ class Globe {
       color: 'red'
     }]
 
-    this.globe = new ThreeGlobe({ animateIn: true })
+    const radiansY = THREE.Math.degToRad(this.gData[0].lng)
+    const radiansX = THREE.Math.degToRad(this.gData[0].lat)
+    const Globe = new ThreeGlobe({ animateIn: true })
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
       .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
       .showAtmosphere(true)
@@ -23,9 +25,13 @@ class Globe {
       .pointAltitude('size')
       .pointColor('color')
 
-    // const issLatLng = this.globe.getCoords(this.gData[0].lat, this.gData[0].lng)
+    this.globe = Globe
 
-    // console.log(issLatLng);
+    // Rotate to ISS Location
+    console.log('radiansY: ' + radiansY)
+    console.log('radiansX: ' + radiansX)
+    Globe.rotation.y = -radiansY
+    Globe.rotation.x = radiansX
 
     // Setup renderer
     const renderer = new THREE.WebGLRenderer()
@@ -34,7 +40,7 @@ class Globe {
 
     // Setup scene
     const scene = new THREE.Scene()
-    scene.add(this.globe)
+    scene.add(Globe)
     scene.add(new THREE.AmbientLight(0xbbbbbb))
     scene.add(new THREE.DirectionalLight(0xffffff, 0.2))
 
@@ -48,7 +54,7 @@ class Globe {
     const tbControls = new TrackballControls(camera, renderer.domElement)
     tbControls.minDistance = 101
     tbControls.rotateSpeed = 5
-    tbControls.zoomSpeed = 0.8;
+    tbControls.zoomSpeed = 0.5;
 
     // const issX  = gData[0].lat / 3.14;
     // const issX = issLatLng.x * Math.PI
@@ -66,8 +72,7 @@ class Globe {
       tbControls.update()
       renderer.render(scene, camera)
       requestAnimationFrame(animate)
-      // Globe.rotation.y = -0.5
-      // Globe.rotation.y -= 0.000005
+      Globe.rotation.y -= 0.000005
     })()
   }
 
@@ -79,9 +84,12 @@ class Globe {
       color: 'red'
     })
 
-    console.log(this.gData)
+    // const radiansY = THREE.Math.degToRad(this.gData[0].lng)
+    // const radiansX = THREE.Math.degToRad(this.gData[0].lat)
+    // console.log(radiansX, radiansY)
+    // this.globe.rotation.y = -radiansY
+    // this.globe.rotation.x = radiansX
     this.globe.pointsData(this.gData)
-    this.globe.rotation.y = 3
   }
 }
 
