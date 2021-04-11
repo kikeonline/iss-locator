@@ -27,3 +27,5 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+# MACOS artifacts
+.DS_Store
