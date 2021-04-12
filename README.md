@@ -20,6 +20,6 @@ TODO:
 - Refactor code, OOP.
 - Testing enviorment with JEST
 - Design UI
-- Add 3D Arc with trajectory, Add ISS 3D Model.
+- Add ISS 3D Model.
 - Show current astronauts aboard the ISS
 - Save history in cloud db?
