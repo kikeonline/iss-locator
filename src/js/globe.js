@@ -14,22 +14,37 @@ class Globe {
       color: 'red'
     }]
 
+    this.gDataPaths = [
+      [
+        [
+          this.lat,
+          this.lng
+        ]
+      ]
+    ]
+
+    console.log(this.gDataPaths)
+
     const radiansY = THREE.Math.degToRad(this.gData[0].lng)
     const radiansX = THREE.Math.degToRad(this.gData[0].lat)
     const Globe = new ThreeGlobe({ animateIn: true })
-      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
       .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
       .showAtmosphere(true)
       .showGraticules(true)
       .pointsData(this.gData)
       .pointAltitude('size')
       .pointColor('color')
+      .pathsData(this.gDataPaths)
+      .pathPointAlt(0.1)
+      .pathColor(() => ['rgba(174, 252, 148, 1.000)', 'red'])
+      .pathDashLength(0.02)
+      .pathDashGap(0.01)
+      .pathDashAnimateTime(100000)
 
     this.globe = Globe
 
     // Rotate to ISS Location
-    console.log('radiansY: ' + radiansY)
-    console.log('radiansX: ' + radiansX)
     Globe.rotation.y = -radiansY
     Globe.rotation.x = radiansX
 
@@ -42,7 +57,7 @@ class Globe {
     const scene = new THREE.Scene()
     scene.add(Globe)
     scene.add(new THREE.AmbientLight(0xbbbbbb))
-    scene.add(new THREE.DirectionalLight(0xffffff, 0.2))
+    scene.add(new THREE.DirectionalLight(0xffffff, 0.5))
 
     // Setup camera
     const camera = new THREE.PerspectiveCamera()
@@ -56,16 +71,6 @@ class Globe {
     tbControls.rotateSpeed = 5
     tbControls.zoomSpeed = 0.5;
 
-    // const issX  = gData[0].lat / 3.14;
-    // const issX = issLatLng.x * Math.PI
-    // const issY = issLatLng.y
-    // const issZ = issLatLng.z
-
-    // Globe.rotation.x = -0.5;
-    // Globe.rotation.y = issX;
-    // Globe.rotation.z = issZ / 100;
-    // console.log(issX, issY, issZ);
-
     // Kick-off renderer
     (function animate () {
       // Frame cycle
@@ -77,19 +82,27 @@ class Globe {
   }
 
   globeUpdate (lat, lng) {
-    this.gData.push({
+    // this.gData.push({
+    //   lat: lat,
+    //   lng: lng,
+    //   size: 0.1,
+    //   color: 'red'
+    // })
+
+    this.gData = [{
       lat: lat,
       lng: lng,
       size: 0.1,
       color: 'red'
-    })
+    }]
 
-    // const radiansY = THREE.Math.degToRad(this.gData[0].lng)
-    // const radiansX = THREE.Math.degToRad(this.gData[0].lat)
-    // console.log(radiansX, radiansY)
-    // this.globe.rotation.y = -radiansY
-    // this.globe.rotation.x = radiansX
+    this.gDataPaths[0].push([
+      lat,
+      lng
+    ])
+    console.log(this.gDataPaths)
     this.globe.pointsData(this.gData)
+    this.globe.pathsData(this.gDataPaths)
   }
 }
 

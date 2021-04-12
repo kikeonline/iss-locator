@@ -8,7 +8,7 @@ const issLoc = new IssLocation()
 issLoc.getLatLng()
   .then(
     result => {
-      console.log(result)
+      // console.log(result)
       const { latitude, longitude } = result
       const globe = new Globe(latitude, longitude)
 
