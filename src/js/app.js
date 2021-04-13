@@ -1,5 +1,4 @@
 import '../styles/styles.css'
-import log from './log.js'
 import { Globe } from './globe.js'
 import IssLocation from './fetchLoc.js'
 
@@ -19,5 +18,3 @@ issLoc.getLatLng()
           })
       }, 30000)
     })
-
-log('EOF')

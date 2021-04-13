@@ -25,8 +25,6 @@ class Globe {
 
     console.log(this.gDataPaths)
 
-    const radiansY = THREE.Math.degToRad(this.gData[0].lng)
-    const radiansX = THREE.Math.degToRad(this.gData[0].lat)
     const Globe = new ThreeGlobe({ animateIn: true })
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
       .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
@@ -38,13 +36,15 @@ class Globe {
       .pathsData(this.gDataPaths)
       .pathPointAlt(0.1)
       .pathColor(() => ['rgba(174, 252, 148, 1.000)', 'red'])
-      .pathDashLength(0.02)
-      .pathDashGap(0.01)
+      .pathDashLength(1)
+      .pathDashGap(0)
       .pathDashAnimateTime(100000)
 
     this.globe = Globe
 
     // Rotate to ISS Location
+    const radiansY = THREE.Math.degToRad(this.gData[0].lng)
+    const radiansX = THREE.Math.degToRad(this.gData[0].lat)
     Globe.rotation.y = -radiansY
     Globe.rotation.x = radiansX
 
@@ -63,32 +63,27 @@ class Globe {
     const camera = new THREE.PerspectiveCamera()
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
-    camera.position.z = 300
+    camera.position.z = 250
 
     // Add camera controls
     const tbControls = new TrackballControls(camera, renderer.domElement)
-    tbControls.minDistance = 101
-    tbControls.rotateSpeed = 5
-    tbControls.zoomSpeed = 0.5;
+    tbControls.minDistance = 150
+    tbControls.maxDistance = 350
+    tbControls.rotateSpeed = 2
+    tbControls.zoomSpeed = 0.3
 
     // Kick-off renderer
-    (function animate () {
+    function animate () {
       // Frame cycle
       tbControls.update()
       renderer.render(scene, camera)
       requestAnimationFrame(animate)
       Globe.rotation.y -= 0.000005
-    })()
+    }
+    animate()
   }
 
   globeUpdate (lat, lng) {
-    // this.gData.push({
-    //   lat: lat,
-    //   lng: lng,
-    //   size: 0.1,
-    //   color: 'red'
-    // })
-
     this.gData = [{
       lat: lat,
       lng: lng,
@@ -100,9 +95,15 @@ class Globe {
       lat,
       lng
     ])
-    console.log(this.gDataPaths)
+
     this.globe.pointsData(this.gData)
     this.globe.pathsData(this.gDataPaths)
+
+    // Rotate to ISS Location
+    const radiansY = THREE.Math.degToRad(this.gData[0].lng)
+    const radiansX = THREE.Math.degToRad(this.gData[0].lat)
+    this.globe.rotateY = -radiansY
+    this.globe.rotateX = radiansX
   }
 }
 
